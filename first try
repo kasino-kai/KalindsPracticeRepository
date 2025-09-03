@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>GitHub Pages Test</title>
-  <script type="module">
-    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
-    mermaid.initialize({ startOnLoad: true });
-  </script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-    }
-    h1 {
-      color: #333;
-    }
-    pre {
-      bac
+<html> 
+  <head>
+    <title> My personal introdurction </title>
+    <style> 
+      body {
+background-color: green;
+}
+h1 {
+color:yellow;
+}
+p {
+color: red;
+}
+    </style>
+  </head>
+  <body> <h1> my name is kalind edwards</h1>
+  <p> im a cyersecurity student at wake tech. in my free time i like playing xbox. i rarely have free time because of school.</p>
+  </body>
+</html>
