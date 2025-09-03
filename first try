@@ -1,8 +1,17 @@
-```mermaid
-graph TD
-    A[Start] --> B{Decision?}
-    B -->|Yes| C[Do something]
-    B -->|No| D[Do something else]
-    C --> E[End]
-    D --> E[End]
 
+Commit → Push → View on your repo’s **main page** → you should see the flowchart.  
+
+---
+
+### ❌ Where it won’t work
+- If you put the same code in **index.html** (for GitHub Pages), it won’t render unless you import the Mermaid.js library manually.  
+- If you’re just opening the Markdown locally in a browser, it won’t render unless your editor (like VS Code with a plugin) has Mermaid support.  
+
+---
+
+👉 Quick test for you:  
+- Does your **README.md file** in the repo show the diagram correctly on **github.com**?  
+  - If yes → your GitHub Markdown is working.  
+  - If no → it may be disabled for your org/account, but it’s usually on by default.  
+
+Do you want me to give you the **HTML + JavaScript snippet** that makes Mermaid work on GitHub Pages (so it renders in your `index.html` site too)?
