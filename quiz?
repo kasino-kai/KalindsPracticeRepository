@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f4f4f9;
+    }
+    .quiz-container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .question {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .options button {
+      display: block;
+      margin: 6px 0;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 6px;
+      background: #ddd;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+    .options button:hover {
+      background: #ccc;
+    }
+    #feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .correct { color: green; }
+    .incorrect { color: red; }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div id="quiz"></div>
+    <div id="feedback"></div>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "What does HTML stand for?",
+        options: [
+          "Hyper Trainer Marking Language",
+          "Hyper Text Markup Language",
+          "Hyper Tool Multi Language",
+          "High Tech Modern Language"
+        ],
+        answer: 1
+      },
+      {
+        question: "Which tag is used to create a hyperlink?",
+        options: ["<link>", "<a>", "<href>", "<url>"],
+        answer: 1
+      },
+      {
+        question: "True or False: The <head> element is where you put the visible content of your webpage.",
+        options: ["True", "False"],
+        answer: 1
+      },
+      {
+        question: "The correct HTML tag for the largest heading is _____.",
+        options: ["<heading>", "<h6>", "<h1>", "<title>"],
+        answer: 2
+      },
+      {
+        question: "Which of the following adds an image to a webpage?",
+        options: [
+          "<img src='image.jpg'>",
+          "<image>image.jpg</image>",
+          "<picture>image.jpg</picture>",
+          "<src>image.jpg</src>"
+        ],
+        answer: 0
+      },
+      {
+        question: "What attribute is used to provide alternative text for an image?",
+        options: ["title", "alt", "src", "description"],
+        answer: 1
+      },
+      {
+        question: "Which tag is used to create a line break?",
+        options: ["<lb>", "<break>", "<br>", "<line>"],
+        answer: 2
+      },
+      {
+        question: "Which of these is the correct basic structure of an HTML page?",
+        options: [
+          "<html><head><title></title></head><body></body></html>",
+          "<head><html><body></body></html></head>",
+          "<html><body><head></head></body></html>",
+          "<title><html><body></body></html></title>"
+        ],
+        answer: 0
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    function loadQuestion() {
+      const quiz = document.getElementById("quiz");
+      const feedback = document.getElementById("feedback");
+      feedback.innerHTML = ""; // clear feedback
+      if (currentQuestion < quizData.length) {
+        const q = quizData[currentQuestion];
+        quiz.innerHTML = `
+          <div class="question">${q.question}</div>
+          <div class="options">
+            ${q.options.map((opt, i) => 
+              `<button onclick="checkAnswer(${i}, this)">${opt}</button>`
+            ).join("")}
+          </div>
+        `;
+      } else {
+        document.getElementById("quiz").innerHTML = `<p>Quiz Finished!</p>`;
+        document.getElementById("result").innerText = `Your score: ${score}/${quizData.length}`;
+      }
+    }
+
+    function checkAnswer(selected, button) {
+      const feedback = document.getElementById("feedback");
+      const correctAnswer = quizData[currentQuestion].answer;
+
+      if (selected === correctAnswer) {
+        score++;
+        feedback.innerHTML = "<span class='correct'>✅ Correct!</span>";
+      } else {
+        feedback.innerHTML = `<span class='incorrect'>❌ Incorrect. The correct answer was: ${quizData[currentQuestion].options[correctAnswer]}</span>`;
+      }
+
+      // Disable all buttons after an answer is chosen
+      const buttons = document.querySelectorAll(".options button");
+      buttons.forEach(btn => btn.disabled = true);
+
+      // Move to the next question after 1.5s
+      setTimeout(() => {
+        currentQuestion++;
+        loadQuestion();
+      }, 1500);
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>
